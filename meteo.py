@@ -1,5 +1,4 @@
 import json
-
 import pyowm
 from pyowm.utils.config import get_default_config
 from pyowm.utils import measurables
@@ -9,8 +8,7 @@ from pyowm.utils import measurables
 with open("config.json", "r") as f:
     conf_date = json.load(f)
 
-APIKEY = conf_date["APIKEY"]
-print(APIKEY)
+APIKEY = conf_date["API_METEO_KEY"]
 _meteo_api_initialized = False
 _meteo_api = None  # On force la valeur à "None" pour permettre les tests par la suite (Null dans les autres langages
 # le plus souvent)
@@ -60,8 +58,7 @@ def recherche_ville(ville):
         new_list = []
         for ville in villes:
             if ville[1] not in new_list:
-                new_list.append(ville[
-                                    1])  # ville[1] contient le nom de la ville trouvée, se référent à la documentation de l'API pour les détails des valeurs retournées
+                new_list.append(ville[1])  # ville[1] contient le nom de la ville trouvée, se référent à la documentation de l'API pour les détails des valeurs retournées
         return new_list
     else:
         print("Erreur : l'API météo n'est pas initialisée")

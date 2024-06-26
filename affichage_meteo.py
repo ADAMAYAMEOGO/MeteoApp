@@ -1,6 +1,7 @@
 import datetime
 import os
 from meteo_utils import *
+import couleur
 
 # constantes spécifiques au module pour le formatage à l'écran sous forme de tableau
 ECRAN_NOMBRE_COLONNES = 200
@@ -69,7 +70,7 @@ def afficher_en_tete(ville, temperature, condition_meteo):
     message3 = "Condition: " + condition_meteo
     message_ligne = _fermer_ligne("| " + message1 + " > " + message2 + " > " + message3)
     print("|" + ("-" * (ECRAN_NOMBRE_COLONNES - 7)) + "|")
-    print(message_ligne)
+    print(f"{couleur.BOLD} {message_ligne} {couleur.RESET}")
     print("|" + ("-" * (ECRAN_NOMBRE_COLONNES - 7)) + "|")
 
 
@@ -189,6 +190,7 @@ def afficher_ecran_accueil():
     print(_fermer_ligne("|    2) Consulter la météo de sa ville (tapez 2 et appuyez sur la touche entée)"))
     print(_fermer_ligne("|    3) Selectionner parmis les villes les plus proche de chez moi (tapez 3 et appuyez sur "
                         "la touche entre)"))
+    print(_fermer_ligne(f"|         {couleur.BOLD}Taper la touche Entrée pour quitter le programme{couleur.RESET}        "))
     print("|" + (" " * (ECRAN_NOMBRE_COLONNES - 3)) + "|")
     print("|" + ("-" * (ECRAN_NOMBRE_COLONNES - 3)) + "|")
     print()

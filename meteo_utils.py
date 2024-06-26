@@ -1,6 +1,22 @@
 import meteo
 from meteo_common import *
+import requests
 
+
+def get_public_ip():
+    response = requests.get('https://api.ipify.org?format=json')
+    ip_data = response.json()
+    return ip_data['ip']
+
+
+def get_location():
+    ip_address = get_public_ip()
+    response = requests.get(f'https://ipinfo.io/{ip_address}/json')
+    location_data = response.json()
+    return location_data.get('city')
+
+"""region = location.get('region')
+city = location.get('city')"""
 
 def construire_affichage_prevision_temperature(ville, description, type_temperature):
     """
@@ -128,5 +144,3 @@ def construire_affichage_prevision_vent_orientation(ville):
     previsions['j7'] = str(meteo.get_vent_orientation_prevision(ville, PREVISION_J_PLUS_7)) + "°"
 
     return previsions
-
-
